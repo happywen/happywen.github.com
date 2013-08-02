@@ -154,7 +154,7 @@
          $("input[name=loginbtn]").click(function(){
              //alert("right");
             var token_num;
-            OAuth.initialize('TR_TkYTy3uIqSxOd_7eYDKuJoMk');
+            OAuth.initialize('ssDzAIzWjx8jAi_EnOrd3FRXwCM');
 			//console.log("Hello,World");
 			OAuth.popup('github', function(err, result) {
   			//handle error with err
