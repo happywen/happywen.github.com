@@ -36,39 +36,67 @@
             	var obj = eval(data);
             	//console.log(data);
             	//alert(obj.issues[0].title);
-            	
-	            $("<h2>"+obj.issues[0].user+"<br /> </h2>").appendTo("#issuelist");
-	            $("<h2><span>Creat at: "+obj.issues[0].created_at+"Update at: "+obj.issues[0].updated_at+"<br /></span></h2>").appendTo("#issuelist");
-	            $("<p><strong>"+obj.issues[0].title+"<br /></strong></p>").appendTo("#issuelist");
-	            if(obj.issues[0].body != null)
-	            {$("<p>"+obj.issues[0].body+"<br /></p>").appendTo("#issuelist");}
-	            $("<div id="+"issues"+obj.issues[0].number+">").appendTo("#issuelist");
-	            $("</div>").appendTo("#issues"+obj.issues[0].number+"");
-                var issuenum = obj.issues[0].number;
-        		$.ajax({ 
-		            type: "GET",
-		            async: false, //把ajax改为同步解决biaoi传递进去的问题
-		            contentType: "application/x-www-form-urlencoded",
-		            dataType: "json",
-		            url: "https://api.github.com/repos/"+$("meta[name=repo_owner]").attr("content")+"/"+$("meta[name=repo_name]").attr("content")+"/issues/"+issuenum+"/comments",  //这里是网址
-		            success:function(data)
-		            {
-		            	//console.log(data);
-		            	var obj = eval(data);
-		            	//console.log(biaoi);
-		                //console.log(array[biaoi].number);
-		            	for(var j=0;j<data.length;j++){
-			            	$("<h3>"+obj[j].user.login+"</h3>").appendTo("#issues"+issuenum+"");
-			            	$("<h3><span>Creat at: "+obj[j].created_at+"Update at: "+obj[j].updated_at+"<br /></span></h3>").appendTo("#issues"+issuenum+"");
-			                $("<p>"+obj[j].body+"<br /></p>").appendTo("#issues"+issuenum+"");
-				        	    //$("<p><strong>"+obj[i].title+"<br /></strong></p>").appendTo("#issuelist");
-			            }   
-		            },
-		            timeout:30000, 
-		            error: function (XMLHttpRequest, textStatus, errorThrown) {
-		            //alert(errorThrown);
-		            }
-		        });
+            	if (obj.issues.length == 0)
+            		{
+            			$.ajax({ 
+				            type: "POST",
+				            async: false, //把ajax改为同步解决biaoi传递进去的问题
+				            contentType: "application/x-www-form-urlencoded",
+				            dataType: "json",
+				            data:JSON.stringify({"title":$("title").text()}),
+				            url:  "https://api.github.com/repos/"+$("meta[name=repo_owner]").attr("content")+"/"+$("meta[name=repo_name]").attr("content")+"/issues?access_token="+$.cookie('token')+"",  //这里是网址
+				            success:function(data)
+				            {
+				            	//alert(data);
+				            	var obj = eval(data);
+				            
+				            	//console.log(obj);
+				            	//console.log(obj.user.login);
+				            	 $("<h2>"+obj.user.login+"<br /> </h2>").appendTo("#issuelist");
+					             $("<h2><span>Creat at: "+obj.created_at+"Update at: "+obj.updated_at+"<br /></span></h2>").appendTo("#issuelist");
+					             $("<p><strong>"+obj.title+"<br /></strong></p>").appendTo("#issuelist");
+				            	//alert("success");
+				            },
+				            timeout:30000, 
+				            error: function (XMLHttpRequest, textStatus, errorThrown) {
+				              alert(errorThrown);
+				            }
+				        });
+            	    }
+            	 else
+            	 {
+		            $("<h2>"+obj.issues[0].user+"<br /> </h2>").appendTo("#issuelist");
+		            $("<h2><span>Creat at: "+obj.issues[0].created_at+"Update at: "+obj.issues[0].updated_at+"<br /></span></h2>").appendTo("#issuelist");
+		            $("<p><strong>"+obj.issues[0].title+"<br /></strong></p>").appendTo("#issuelist");
+		            if(obj.issues[0].body != null)
+		            {$("<p>"+obj.issues[0].body+"<br /></p>").appendTo("#issuelist");}
+		            $("<div id="+"issues"+obj.issues[0].number+">").appendTo("#issuelist");
+		            $("</div>").appendTo("#issues"+obj.issues[0].number+"");
+	                var issuenum = obj.issues[0].number;
+	        		$.ajax({ 
+			            type: "GET",
+			            async: false, //把ajax改为同步解决biaoi传递进去的问题
+			            contentType: "application/x-www-form-urlencoded",
+			            dataType: "json",
+			            url: "https://api.github.com/repos/"+$("meta[name=repo_owner]").attr("content")+"/"+$("meta[name=repo_name]").attr("content")+"/issues/"+issuenum+"/comments",  //这里是网址
+			            success:function(data)
+			            {
+			            	//console.log(data);
+			            	var obj = eval(data);
+			            	//console.log(biaoi);
+			                //console.log(array[biaoi].number);
+			            	for(var j=0;j<data.length;j++){
+				            	$("<h3>"+obj[j].user.login+"</h3>").appendTo("#issues"+issuenum+"");
+				            	$("<h3><span>Creat at: "+obj[j].created_at+"Update at: "+obj[j].updated_at+"<br /></span></h3>").appendTo("#issues"+issuenum+"");
+				                $("<p>"+obj[j].body+"<br /></p>").appendTo("#issues"+issuenum+"");
+					        	    //$("<p><strong>"+obj[i].title+"<br /></strong></p>").appendTo("#issuelist");
+				            }   
+			            },
+			            timeout:30000, 
+			            error: function (XMLHttpRequest, textStatus, errorThrown) {
+			            //alert(errorThrown);
+			            }
+			        });
 	   			 $("input[name=imageField]").click(function(){
 	             $.ajax({ 
 			            type: "POST",
@@ -95,6 +123,7 @@
 			            }
 			        });
 	        	 });
+				}
             },
             timeout:30000, 
             error: function (XMLHttpRequest, textStatus, errorThrown) {
