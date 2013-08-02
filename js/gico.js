@@ -97,6 +97,7 @@
 			            //alert(errorThrown);
 			            }
 			        });
+				}
 	   			 $("input[name=imageField]").click(function(){
 	             $.ajax({ 
 			            type: "POST",
@@ -123,7 +124,7 @@
 			            }
 			        });
 	        	 });
-				}
+				
             },
             timeout:30000, 
             error: function (XMLHttpRequest, textStatus, errorThrown) {
