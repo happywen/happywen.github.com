@@ -30,7 +30,7 @@
             type: "GET",
             contentType: "application/x-www-form-urlencoded",
             dataType: "json",
-            url: "https://api.github.com/legacy/issues/search/happywen/happywen.github.com/open/Yes",  //这里是网址
+            url: "https://api.github.com/legacy/issues/search/"+$("meta[name=repo_owner]")+"/"+$("meta[name=repo_name]")+"/open/"+$("title")+"",  //这里是网址
             success:function(data)
             {
             	var obj = eval(data);
@@ -50,7 +50,7 @@
 		            async: false, //把ajax改为同步解决biaoi传递进去的问题
 		            contentType: "application/x-www-form-urlencoded",
 		            dataType: "json",
-		            url: "https://api.github.com/repos/happywen/happywen.github.com/issues/"+issuenum+"/comments",  //这里是网址
+		            url: "https://api.github.com/repos/"+$("meta[name=repo_owner]")+"/"+$("meta[name=repo_name]")+"/issues/"+issuenum+"/comments",  //这里是网址
 		            success:function(data)
 		            {
 		            	//console.log(data);
@@ -76,7 +76,7 @@
 			            contentType: "application/x-www-form-urlencoded",
 			            dataType: "json",
 			            data:JSON.stringify({"body":$("textarea[name=message]").val()}),
-			            url: "https://api.github.com/repos/happywen/happywen.github.com/issues/"+issuenum+"/comments?access_token="+$.cookie('token')+"",  //这里是网址
+			            url: "https://api.github.com/repos/"+$("meta[name=repo_owner]")+"/"+$("meta[name=repo_name]")+"/issues/"+issuenum+"/comments?access_token="+$.cookie('token')+"",  //这里是网址
 			            success:function(data)
 			            {
 			            	//alert(data);
