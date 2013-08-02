@@ -24,8 +24,8 @@
 	     	$("input[name=imageField]").show();
 			//alert("show");
 		 }
-		 console.log($("meta[name=repo_owner]").attr("content"));
-	     console.log($("meta[name=repo_name]").attr("content"));
+		 //console.log($("meta[name=repo_owner]").attr("content"));
+	     //console.log($("meta[name=repo_name]").attr("content"));
 		 $.ajax({
             type: "GET",
             contentType: "application/x-www-form-urlencoded",
