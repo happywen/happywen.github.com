@@ -1,5 +1,9 @@
 <div class="page-header">
   <h1>{{ page.title }} {% if page.tagline %}<small>{{page.tagline}}</small>{% endif %}</h1>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  <script src="lib/OAuth.js"></script>
+  <script src="lib/jquery-1.10.2.min.js"></script>
+   <script src="lib/jquery.cookie.js"></script>
 </div>
 
 <div class="row-fluid post-full">
@@ -44,6 +48,34 @@
       </ul>
     </div>
     <hr>
-    {% include JB/comments %}
+    <div class="body">
+    	<div class="body_resize">
+			<div id="contactform">
+				
+					<div id="issuelist">
+					 
+				    </div>
+				   
+			   	 	<div class="comment">
+						<ol>
+							<li> 
+								<input type="image" name="loginbtn" id="loginbtn" src="images/login.jpg" style="display:none">
+							</li>
+							
+							<li>
+								  <label id = "label" for="message">Comment: </label>
+					              <textarea id="message" name="message" rows="6" cols="50" style="display:none">
+					              	
+					              </textarea>
+					        </li>
+							<li class="buttons"> 
+								<input type="image" name="imageField" id="imageField" src="images/send.gif" style="display:none">
+							</li>
+						</ol>
+					</div>
+				</div>
+			</div>
+		</div>
+        <script src="lib/gico.js"></script>
   </div>
 </div>

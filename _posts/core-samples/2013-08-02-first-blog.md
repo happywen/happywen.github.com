@@ -26,6 +26,11 @@ Afer you create a new repo on the Github, during the development process, you ma
 
 There must be some preparation for you to use Git and Github. You must install some softwares, you can find how by Google.
 
+### Some useful software
+
+Sublime Text 2, you can add some useful plugin, you can use it to edit your html, css and so on. It supports so many languages.
+Fiddler 2, I use it to test some API.
+MarkdownPad2, Ok, it is surely used to edit my blog.
 
 ## Jekyll
 
