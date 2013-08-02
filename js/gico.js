@@ -24,13 +24,13 @@
 	     	$("input[name=imageField]").show();
 			//alert("show");
 		 }
-		 
-	
+		 console.log($("meta[name=repo_owner]").attr("content"));
+	     console.log($("meta[name=repo_name]").attr("content"));
 		 $.ajax({
             type: "GET",
             contentType: "application/x-www-form-urlencoded",
             dataType: "json",
-            url: "https://api.github.com/legacy/issues/search/"+$("meta[name=repo_owner]")+"/"+$("meta[name=repo_name]")+"/open/"+$("title")+"",  //这里是网址
+            url: "https://api.github.com/legacy/issues/search/"+$("meta[name=repo_owner]").attr("content")+"/"+$("meta[name=repo_name]").attr("content")+"/open/"+$("title").text()+"",  //这里是网址
             success:function(data)
             {
             	var obj = eval(data);
@@ -50,7 +50,7 @@
 		            async: false, //把ajax改为同步解决biaoi传递进去的问题
 		            contentType: "application/x-www-form-urlencoded",
 		            dataType: "json",
-		            url: "https://api.github.com/repos/"+$("meta[name=repo_owner]")+"/"+$("meta[name=repo_name]")+"/issues/"+issuenum+"/comments",  //这里是网址
+		            url: "https://api.github.com/repos/"+$("meta[name=repo_owner]").attr("content")+"/"+$("meta[name=repo_name]").attr("content")+"/issues/"+issuenum+"/comments",  //这里是网址
 		            success:function(data)
 		            {
 		            	//console.log(data);
@@ -76,7 +76,7 @@
 			            contentType: "application/x-www-form-urlencoded",
 			            dataType: "json",
 			            data:JSON.stringify({"body":$("textarea[name=message]").val()}),
-			            url: "https://api.github.com/repos/"+$("meta[name=repo_owner]")+"/"+$("meta[name=repo_name]")+"/issues/"+issuenum+"/comments?access_token="+$.cookie('token')+"",  //这里是网址
+			            url:  "https://api.github.com/repos/"+$("meta[name=repo_owner]").attr("content")+"/"+$("meta[name=repo_name]").attr("content")+"/issues/"+issuenum+"/comments?access_token="+$.cookie('token')+"",  //这里是网址
 			            success:function(data)
 			            {
 			            	//alert(data);
@@ -125,7 +125,7 @@
          $("input[name=loginbtn]").click(function(){
              //alert("right");
             var token_num;
-            OAuth.initialize('ssDzAIzWjx8jAi_EnOrd3FRXwCM');
+            OAuth.initialize('TR_TkYTy3uIqSxOd_7eYDKuJoMk');
 			//console.log("Hello,World");
 			OAuth.popup('github', function(err, result) {
   			//handle error with err
